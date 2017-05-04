@@ -1,8 +1,9 @@
 /**
- * Created by mlingolu on 4/25/17.
+ * Created by lmssrinivas on 4/25/17.
  */
 
 import React from 'react';
+import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
 class HeaderContainer extends React.Component{
 
@@ -14,13 +15,14 @@ class HeaderContainer extends React.Component{
     render(){
         return(
             <div>
+
                 <nav className="navbar navbar-toggleable-md navbar-inverse bg-primary">
                     <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <a className="navbar-brand" href="#">
+                    <Link to={'/'} className="navbar-brand">
                         <img width="50" height="50" src="images/favicons/ms-icon-310x310.png" alt=""/>
-                    </a>
+                    </Link>
 
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <ul className="navbar-nav mr-auto mt-2 mt-md-0">

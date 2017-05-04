@@ -1,9 +1,7 @@
-
-
 import React from 'react';
 import ReactDOM from 'react-dom'
-import HomeContainer from './home/home.container';
-import HeaderContainer from './header/header.container';
+import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import RouterComponent from './router';
 
 class AppContainer extends React.Component{
 
@@ -13,13 +11,7 @@ class AppContainer extends React.Component{
 
     render(){
         return(
-            <div>
-
-                <HeaderContainer/>
-                <div className="container">
-                    <HomeContainer/>
-                </div>
-            </div>
+            <RouterComponent/>
         )
     }
 }
