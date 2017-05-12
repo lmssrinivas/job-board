@@ -2,13 +2,17 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = {
 
     entry: {
         vendor:'./js/vendor.js',
-        app:'./js/app.js',
+        app:'./js/app.js'
+    },
+    resolve: {
+        extensions: ['.js', '.css', '.scss']
     },
     target: 'web',
     output: {
@@ -16,18 +20,23 @@ module.exports = {
         filename: '[name].js'
     },
     devServer: {
-        contentBase: './public'
+        contentBase: './public',
+        publicPath:'http://localhost:3000/dist/'
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-
-        new webpack.NoEmitOnErrorsPlugin(),
-
         new HtmlWebpackPlugin({
             template :'./index.html',
             filename:'index.html',
             inject:'body'
         }),
+        new ExtractTextPlugin({
+            filename: 'styles/main.css',
+            allChunks: true
+        }),
+
+        new webpack.HotModuleReplacementPlugin(),
+
+        new webpack.NoEmitOnErrorsPlugin(),
 
         new CopyWebpackPlugin([
             {
@@ -50,20 +59,18 @@ module.exports = {
     module: {
 
         loaders: [
-
             {
                 test: /\.(js|jsx)$/,
                 loaders: ['babel-loader'],
                 exclude: /node_modules/
             },
             {
-                test: /(\css)$/,
-                loader: ['style', 'css']
+                test:/\.scss$/,
+                loader:ExtractTextPlugin.extract('css-loader?sourceMap!sass-loader?sourceMap')
             },
-
             {
                 test: /\.(woff|woff2)$/,
-                loader: 'url?prefix=font&limit=5000'
+                loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]"
             },
             {
                 test: /\.(eot|ttf|svg|gif|png)$/,

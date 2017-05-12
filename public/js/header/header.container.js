@@ -3,13 +3,28 @@
  */
 
 import React from 'react';
-import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import AutoComplete from 'material-ui/AutoComplete';
+import IconButton from 'material-ui/IconButton';
 
 class HeaderContainer extends React.Component{
 
 
     constructor(){
-        super()
+        super();
+        this.state={
+            searchData :[]
+        }
+    }
+
+    searchRecords(value){
+        this.setState({
+            searchData: [
+                value,
+                value + value,
+                value + value + value,
+            ],
+        });
     }
 
     render(){
@@ -21,23 +36,30 @@ class HeaderContainer extends React.Component{
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <Link to={'/'} className="navbar-brand">
-                        <img width="50" height="50" src="images/favicons/ms-icon-310x310.png" alt=""/>
+                        <img style={{borderRadius:24}} width="50" height="50" src="images/favicons/ms-icon-310x310.png" alt=""/>
                     </Link>
 
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                        <ul className="navbar-nav mr-auto mt-2 mt-md-0">
+                        <ul className="navbar-nav  mt-2 mt-md-0">
                             <li className="nav-item active">
                                 <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
                             </li>
+
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
+                                <Link to={`/status`} className="nav-link">
+                                    Status
+                                </Link>
                             </li>
 
                         </ul>
-                        <form className="form-inline my-2 my-lg-0">
-                            <input className="form-control mr-sm-2" type="text" placeholder="Search"/>
+                        <form className="form-inline mr-auto my-2 my-lg-0">
+                            <AutoComplete
+                                hintText="Type anything"
+                                dataSource={this.state.searchData}
+                                onUpdateInput={this.searchRecords.bind(this)}
+                            />
 
-                            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            <IconButton iconClassName="muidocs-icon-custom-github" />
                         </form>
                     </div>
                 </nav>

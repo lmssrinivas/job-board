@@ -10,5 +10,6 @@ let CardsController = require('./../controllers/card');
 
 
 router.get('/cards',CardsController.getCards);
+router.post('/job/create',CardsController.createJob);
 
 module.exports = router;

@@ -10,7 +10,8 @@ module.exports.getCards = function (req,res,next) {
             id:'718378123',
             url:'http://www.gettyimages.com/gi-resources/images/Embed/new/embed2.jpg',
             description:'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-            title:'Cat',
+            title:'Frontend Web Developer',
+            tags:['front','web','developer','software','engineer','end'],
             createdDate:new Date().toDateString()
         },
         {
@@ -31,5 +32,17 @@ module.exports.getCards = function (req,res,next) {
 
     res.json(cards);
 
+    next();
+}
+
+
+module.exports.createJob = function (req,res,next) {
+
+
+    console.log(req.body);
+
+    res.send({
+        status:'success'
+    })
     next();
 }
