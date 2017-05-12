@@ -40,9 +40,9 @@ class CreateJobContainer extends React.Component{
         return (
 
             <CreateJobComponent
+                jobModel={this.props.jobModel}
                 deleteChip={this.deleteChip.bind(this)}
                 styles={this.styles}
-                chipData ={this.props.jobModel.tags}
             >
 
             </CreateJobComponent>

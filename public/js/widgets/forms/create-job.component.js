@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField';
 import Chip from 'material-ui/Chip';
 
 
-const CreateJobComponent =({jobModel,deleteChip,styles,chipData})=>(
+const CreateJobComponent =({jobModel,deleteChip,styles})=>(
 
 
     <div className="container">
@@ -40,7 +40,7 @@ const CreateJobComponent =({jobModel,deleteChip,styles,chipData})=>(
                         name="tags"
                         value={jobModel.tags}
                     />
-                    {chipData.map(data=>
+                    {jobModel.tags.map(data=>
                         <Chip
                             key={data.key}
                             onRequestDelete={() => deleteChip(data.key)}

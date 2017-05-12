@@ -39,29 +39,24 @@ class HeaderContainer extends React.Component{
                         <img style={{borderRadius:24}} width="50" height="50" src="images/favicons/ms-icon-310x310.png" alt=""/>
                     </Link>
 
-                    <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                        <ul className="navbar-nav  mt-2 mt-md-0">
-                            <li className="nav-item active">
-                                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-                            </li>
+                    <form className="form-inline">
+                        <AutoComplete
+                            hintText="Type anything"
+                            dataSource={this.state.searchData}
+                            onUpdateInput={this.searchRecords.bind(this)}
+                        />
 
-                            <li className="nav-item">
-                                <Link to={`/status`} className="nav-link">
-                                    Status
-                                </Link>
-                            </li>
+                        <IconButton iconClassName="muidocs-icon-custom-github" />
+                    </form>
 
-                        </ul>
-                        <form className="form-inline mr-auto my-2 my-lg-0">
-                            <AutoComplete
-                                hintText="Type anything"
-                                dataSource={this.state.searchData}
-                                onUpdateInput={this.searchRecords.bind(this)}
-                            />
 
-                            <IconButton iconClassName="muidocs-icon-custom-github" />
-                        </form>
-                    </div>
+                    <ul className="navbar-nav">
+                        <li className="nav-item ">
+                            <Link to={'/status'} className="nav-link">
+                                Status
+                            </Link>
+                        </li>
+                    </ul>
                 </nav>
             </div>
 
